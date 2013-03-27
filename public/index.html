@@ -1,0 +1,101 @@
+
+<html>
+    <head>
+        <link href="main.css" rel="stylesheet" type="text/css"/>
+        <script src="/jquery-1.9.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect(window.location.hostname);
+
+            // listener, whenever the server emits 'updateusers', this updates the username list
+            socket.on('set_image', function(image_url, search_term, scientific_name) {
+                set_image(image_url, search_term, scientific_name, true);
+            });
+            
+            $(function(){
+                $('#form_div form').submit(function() {
+                    var search_term = $('#search_term').val();
+                    $('#search_term').select();
+                    alert_user("Searching...");
+                    lookup_search(search_term);
+                    return false;
+                });
+            });
+            
+            function lookup_search(search_term) {
+                $.getJSON("http://eol.org/api/search/1.0.json?exact=1&callback=?&q=" + search_term,
+                    function(json) {
+                        if(json.results[0] === undefined) {
+                            alert_user("No matches");
+                        } else {
+                            var taxon_concept_id = json.results[0].id;
+                            alert_user("Getting images...");
+                            replace_image(taxon_concept_id, search_term);
+                        }
+                    }
+                );
+            }
+            
+            function replace_image(taxon_concept_id, search_term) {
+                $.getJSON("http://eol.org/api/pages.json?images=1&text=0&videos=0&details=1&callback=?&id=" + taxon_concept_id,
+                    function(json) {
+                        if(json.dataObjects[0] === undefined) {
+                            alert_user("There are no images of \""+ search_term +"\"");
+                        } else {
+                            var scientific_name = json.scientificName;
+                            var image_url = json.dataObjects[0].eolMediaURL.replace("_orig", "_580_360");
+                            reset_user_message();
+                            socket.emit('lets_all_look_at', image_url, search_term, scientific_name);
+                            set_image(image_url, search_term, scientific_name, false);
+                        }
+                    }
+                );
+            }
+            
+            function set_image(image_url, search_term, scientific_name, from_other_users) {
+                if($("#image_list li").length == 0) {
+                    $("#initial_message").hide();
+                }
+                if($('#image_list li').length > 14) {
+                    $("#image_list li:last").remove();
+                }
+                var intro = "Here's a";
+                if(from_other_users == true) {
+                    intro = "Someone wanted to show you a"
+                }
+                $("<li><div class='image_caption'>"+ intro +" <span class='search_term'>"+ search_term +"</span> (<i>"+ scientific_name +
+                  "</i>)</div><div class='image_object'><img src='"+ image_url+ "'/></div></li>").prependTo("#image_list");
+            }
+            function reset_user_message() {
+                $('#message_div').html("");
+            }
+            
+            function alert_user(message) {
+                $('#message_div').html(message);
+            }
+            
+        </script>
+    </head>
+    <body>
+        <div id="top_section">
+            <div id="header">
+                <h2>herb.aceo.us</h2>
+                <div class="sponsored">
+                    powered by <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png" border=0/></a>
+                </div>
+            </div>
+            <div id="form_div">
+                <form action="#">
+                    Enter a species name: <input type="text" id="search_term" size="50"/>
+                </form>
+            </div>
+            <div id="message_div"></div>
+        </div>
+        <div id="bottom_section">
+            <div id="image_div">
+                <div id="initial_message">Make a search or wait while others explore...</div>
+                <ul id="image_list"></ul>
+            </div>
+        </div>
+    </body>
+</html>

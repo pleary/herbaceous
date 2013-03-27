@@ -1,0 +1,78 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Helvetica Neue',Helvetica,Arial Geneva,sans-serif;
+    background: #B4EDED;
+    color: #2E2E2E;
+}
+#top_section {
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #b4eded 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#b4eded)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#b4eded 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#b4eded 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#b4eded 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#b4eded 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b4eded',GradientType=0 ); /* IE6-9 */
+}
+#bottom_section {
+}
+#header {
+    text-align: center;
+    padding: 20px 0px 40px;
+}
+    #header h2 {
+        font-size: 1.8em;
+        margin: 0px;
+    }
+    #header .sponsored {
+        color: #585858;
+        font-size: .9em;
+    }
+    #header img {
+        vertical-align: bottom;
+}
+#form_div {
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#form_div form {
+    margin-bottom: 0px;
+}
+
+#message_div {
+    font-style: italic;
+    text-align: center;
+    color: #B82D1E;
+    height: 25px;
+}
+#image_list li {
+    list-style: circle outside none;
+    margin-bottom: 50px;
+}
+    #image_list li .image_caption {
+        font-size: 1.3em;
+        margin-bottom: 5px;
+    }
+    #image_list li .image_object {
+        margin-left: 50px;
+    }
+.search_term {
+    font-weight: bold;
+}
+input {
+    font-family: 'Helvetica Neue',Helvetica,Arial Geneva,sans-serif;
+    letter-spacing: 1px;
+    font-size: 1.1em;
+}
+#initial_message {
+    color: #848484;
+    font-style: italic;
+    text-align: center;
+    font-size: 1.8em;
+    padding-top: 50px;
+}
