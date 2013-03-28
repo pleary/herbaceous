@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
+var fs = require('fs');
 
 // GET /javascripts/jquery.js
 // GET /style.css
@@ -18,8 +19,22 @@ server.listen(port, function() {
   console.log("Express server listening on port %d", server.address().port);
 });
 
+var openConnections = 0;
 io.sockets.on('connection', function (socket) {
-  socket.on('lets_all_look_at', function(image_url, search_term, scientific_name) {
-      socket.broadcast.emit('set_image', image_url, search_term, scientific_name);
+  openConnections++;
+  io.sockets.emit('update_user_count', openConnections);
+  // socket.on('connect', function () {
+  //   openConnections++;
+  //   io.sockets.emit('update_user_count', openConnections);
+  // });
+  socket.on('disconnect', function () {
+    openConnections--;
+    io.sockets.emit('update_user_count', openConnections);
+  });
+  socket.on('lets_all_look_at', function(taxon_data) {
+    fs.appendFile('search_log.txt', JSON.stringify(taxon_data)+"\n", function (err) {
+      if (err) throw err;
+    });
+    socket.broadcast.emit('set_image', taxon_data);
   });
 });

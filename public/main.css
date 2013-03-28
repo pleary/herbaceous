@@ -17,8 +17,6 @@ body {
     background: linear-gradient(to bottom, #ffffff 0%,#b4eded 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#b4eded',GradientType=0 ); /* IE6-9 */
 }
-#bottom_section {
-}
 #header {
     text-align: center;
     padding: 20px 0px 40px;
@@ -31,48 +29,59 @@ body {
         color: #585858;
         font-size: .9em;
     }
-    #header img {
-        vertical-align: bottom;
-}
+    #header img { vertical-align: bottom; }
+    #header #user_count {
+        color: #585858;
+        font-size: .6em;
+    }
 #form_div {
     font-size: 1.3em;
     text-align: center;
     margin-bottom: 10px;
 }
 
-#form_div form {
-    margin-bottom: 0px;
-}
-
+#form_div form { margin-bottom: 0px; }
 #message_div {
     font-style: italic;
     text-align: center;
     color: #B82D1E;
     height: 25px;
 }
-#image_list li {
-    list-style: circle outside none;
-    margin-bottom: 50px;
-}
-    #image_list li .image_caption {
-        font-size: 1.3em;
-        margin-bottom: 5px;
-    }
-    #image_list li .image_object {
-        margin-left: 50px;
-    }
-.search_term {
-    font-weight: bold;
-}
+.search_term { font-weight: bold; }
 input {
     font-family: 'Helvetica Neue',Helvetica,Arial Geneva,sans-serif;
     letter-spacing: 1px;
     font-size: 1.1em;
 }
-#initial_message {
-    color: #848484;
-    font-style: italic;
-    text-align: center;
-    font-size: 1.8em;
-    padding-top: 50px;
+
+#image_div .image_caption {
+    font-size: 1.3em;
+    margin-bottom: 5px;
 }
+    #image_div #initial_message {
+        color: #848484;
+        font-style: italic;
+        text-align: center;
+        font-size: 1.8em;
+        padding-top: 50px;
+    }
+    #image_div .stream_item {
+        margin: 0px 0px 60px 30px;
+    }
+    #image_div .slideshow {
+        width: 560px;
+        height: 350px;
+        margin: 10px 0px 15px 20px;
+        float: left;
+    }
+    #image_div .slideshow img {
+        border: 1px solid #424242;
+        box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        background-color: #ffffff;
+    }
+    #image_div .slideshow_caption {
+        font-size: .8em;
+        margin-left: 20px;
+        width: 560px;
+        line-height: 180%;
+    }
