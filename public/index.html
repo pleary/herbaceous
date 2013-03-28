@@ -80,8 +80,8 @@
             }
             
             function set_image(taxon_data, remote_call) {
-                if($("#image_list li").length == 0) $("#initial_message").hide();
-                if($('#image_list li').length > 14) $("#image_list li:last").remove();
+                if($("#image_div div.stream_item").length == 0) $("#initial_message").hide();
+                if($('#image_div div.stream_item').length > 14) $("#image_div div.stream_item:last").remove();
                 var intro = create_indroductory_text(taxon_data, remote_call);
                 var taxon_html = "\
                     <div class='stream_item'><div class='image_caption'>"+ intro +"\
