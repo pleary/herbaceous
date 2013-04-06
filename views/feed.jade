@@ -1,0 +1,10 @@
+extends layout
+
+block header
+  #form_div
+    form(action="#") Enter a species name:
+      input#search_term(type='text', size='50')
+
+block content
+  #image_div
+    #initial_message Make a search or wait while others explore...

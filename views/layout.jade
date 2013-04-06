@@ -1,0 +1,22 @@
+!!! 5
+html
+  head
+    title= title
+    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
+    link(rel='stylesheet', href='/main.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/jquery.cycle.lite.js')
+    script(src='/main.js')
+  body
+    #top_section
+      #header
+        h2 herb.aceo.us
+        .sponsored powered by 
+          a(href='http://eol.org')
+            img(src='http://eol.org/assets/v2/logo_footer.png')
+        #user_count
+      block header
+      #message_div
+    #bottom_section
+      block content
