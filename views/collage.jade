@@ -1,7 +1,7 @@
 extends layout
 
 block append head
-  script(src='/feed.js')
+  script(src='/collage.js')
 
 block header
   #form_div
@@ -9,5 +9,4 @@ block header
       input#search_term(type='text', size='50')
 
 block content
-  #image_div
-    #initial_message Make a search or wait while others explore...
+  #collage

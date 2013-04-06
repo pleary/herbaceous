@@ -3,7 +3,6 @@ var http = require('http');
 var path = require('path');
 var stylus = require('stylus');
 var routes = require('./routes');
-var site = require('./routes/index');
 var app = express();
 
 /*  configure node, express  */
@@ -23,7 +22,10 @@ app.configure(function(){
 });
 
 /*  configure express routes  */
+var site = require('./routes/index');
 app.get('/', site.index);
+app.get('/feed', site.feed);
+app.get('/collage', site.collage);
 
 /*  start node  */
 var server = http.createServer(app);
@@ -55,7 +57,12 @@ io.sockets.on('connection', function (socket) {
     io.sockets.emit('update_user_count', openConnections);
   });
 
-  socket.on('lets_all_look_at', function(taxon_data) {
-    socket.broadcast.emit('set_image', taxon_data);
+  socket.on('add_to_feed', function(taxon_data) {
+    socket.broadcast.emit('add_to_feed', taxon_data);
   });
+
+  socket.on('add_to_collage', function(taxon_data) {
+    socket.broadcast.emit('add_to_collage', taxon_data);
+  });
+
 });

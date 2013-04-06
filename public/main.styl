@@ -7,6 +7,12 @@ body
   background #B4EDED
   color #2E2E2E
 
+a
+  text-decoration none
+  color #0404B4
+  &:hover
+    color #8181F7
+
 #top_section
   background #ffffff /* Old browsers */
   background -moz-linear-gradient(top, #ffffff 0%, #b4eded 100%) /* FF3.6+ */
@@ -53,6 +59,9 @@ input
   letter-spacing 1px
   font-size 1.1em
 
+#bottom_section
+  margin-left 50px
+
 #image_div
   .image_caption
     font-size 1.3em
@@ -64,7 +73,7 @@ input
     font-size 1.8em
     padding-top 50px
   .stream_item
-    margin 0px 0px 60px 30px
+    margin 0px 0px 60px 0px
   .slideshow
     width 560px
     height 350px
@@ -79,3 +88,27 @@ input
     margin-left 20px
     width 560px
     line-height 180%
+
+#index
+  font-size 1.5em
+
+#collage
+  padding-bottom 400px
+  margin-bottom 400px
+  width 840px
+  div.cell
+    width 130px
+    height 130px
+    float left
+    margin 5px
+  div.slideshow
+    width 130px
+    height 130px
+    padding 1px
+    border 1px #BDBDBD solid
+    box-shadow 0 0 10px rgba(0,0,0,0.4)
+    background-color #424242
+  img
+    position absolute
+  div.left
+    clear both
