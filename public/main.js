@@ -1,3 +1,3 @@
 $(function(){
-    $('#header h2').html(window.location.hostname);
+    // $('#header h2').html(window.location.hostname);
 });
